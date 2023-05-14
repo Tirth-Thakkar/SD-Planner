@@ -51,10 +51,13 @@ class LeaderBoardAPI:
             if name is None or len(name) < 1:
                 return {'message': f'Name missing or too short'}, 400
             
-            leaders = Leader.query.order_by(Leader._score.desc()).first()
-            user_scores = [Leader.read() for leader in leaders if leader.name == name]
-            return jsonify(user_scores)
-
+            leaders = Leader.query.order_by(Leader._score.desc()).all()
+            user_scores = [leader.read() for leader in leaders if leader._name == name]
+            if len(user_scores) > 0:
+                return jsonify(user_scores)
+            else: 
+                return {'message': f'No user found with name {name}'}, 400
+            
     class GetUsersHighestScore(Resource):
         def get(self):
             leaders = Leader.query.order_by(Leader._score.desc()).all()
