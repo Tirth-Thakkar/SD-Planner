@@ -69,7 +69,7 @@ class Post(db.Model):
 # -- a.) db.Model is like an inner layer of the onion in ORM
 # -- b.) User represents data we want to store, something that is built on db.Model
 # -- c.) SQLAlchemy ORM is layer on top of SQLAlchemy Core, then SQLAlchemy engine, SQL
-class User(db.Model):
+class Leader(db.Model):
     __tablename__ = 'users'  # table name is plural, class name is singular
 
     # Define the User schema with "vars" from object
@@ -198,15 +198,15 @@ class User(db.Model):
 
 
 # Builds working data for testing
-def initUsers():
+def initLeaders():
     with app.app_context():
         """Create database and tables"""
         db.create_all()
         """Tester data for table"""
-        u1 = User(name='Thomas Edison', uid='toby', password='123toby', dob=date(1847, 2, 11))
-        u2 = User(name='Nicholas Tesla', uid='niko', password='123niko', dob=date(1856, 7, 10))
-        u3 = User(name='Alexander Graham Bell', uid='lex')
-        u4 = User(name='Grace Hopper', uid='hop', password='123hop', dob=date(1906, 12, 9))
+        u1 = Leader(name='Thomas Edison', uid='toby', password='123toby', dob=date(1847, 2, 11))
+        u2 = Leader(name='Nicholas Tesla', uid='niko', password='123niko', dob=date(1856, 7, 10))
+        u3 = Leader(name='Alexander Graham Bell', uid='lex')
+        u4 = Leader(name='Grace Hopper', uid='hop', password='123hop', dob=date(1906, 12, 9))
 
         users = [u1, u2, u3, u4]
 

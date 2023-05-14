@@ -3,7 +3,7 @@ from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource # used for REST API building
 from datetime import datetime
 
-from model.users import User
+from model.users import Leader
 
 user_api = Blueprint('user_api', __name__,
                    url_prefix='/api/users')
@@ -31,7 +31,7 @@ class UserAPI:
             dob = body.get('dob')
 
             ''' #1: Key code block, setup USER OBJECT '''
-            uo = User(name=name, 
+            uo = Leader(name=name, 
                       uid=uid)
             
             ''' Additional garbage error checking '''
@@ -55,7 +55,7 @@ class UserAPI:
             return {'message': f'Processed {name}, either a format error or User ID {uid} is duplicate'}, 400
 
         def get(self): # Read Method
-            users = User.query.all()    # read/extract all users from database
+            users = Leader.query.all()    # read/extract all users from database
             json_ready = [user.read() for user in users]  # prepare output in json
             return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
     
@@ -72,7 +72,7 @@ class UserAPI:
             password = body.get('password')
             
             ''' Find user '''
-            user = User.query.filter_by(_uid=uid).first()
+            user = Leader.query.filter_by(_uid=uid).first()
             if user is None or not user.is_password(password):
                 return {'message': f"Invalid user id or password"}, 400
             
