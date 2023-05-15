@@ -24,7 +24,7 @@ class LeaderBoardAPI:
                 return {'message': f'Name missing or too short'}, 400
             # validate uid
             score = int(body.get('score'))
-            if score is None or score < 0:
+            if score is None or score <= 0:
                 return {'message': f'No username or score is too low'}, 400
 
 
