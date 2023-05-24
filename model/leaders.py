@@ -101,3 +101,5 @@ def initLeaders():
                 db.session.remove()
                 print(f"error try again later")
             
+
+    
