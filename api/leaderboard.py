@@ -71,3 +71,5 @@ class LeaderBoardAPI:
     api.add_resource(GetUnflitered, '/unfiltered')
     api.add_resource(Search, '/search')
     api.add_resource(GetUsersHighestScore, '/MaxScore')    
+
+    
