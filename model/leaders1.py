@@ -46,33 +46,33 @@ class Leader(db.Model):
     
     # a getter method, extracts email from object
     @property
-    def score(self):
-        return self._score
+    def locations(self):
+        return self._locations
     
     # a setter function, allows name to be updated after initial object creation
     @score.setter
-    def score(self, score):
-        self._score = score
+    def locations(self, locations):
+        self._locations = locations
 
     # a getter method, extracts email from object
     @property
-    def score(self):
-        return self._score
+    def tot_distance(self):
+        return self._tot_distance
     
     # a setter function, allows name to be updated after initial object creation
     @score.setter
-    def score(self, score):
-        self._score = score
+    def tot_distance(self, tot_distance):
+        self._tot_distance = tot_distance
     
     # a getter method, extracts email from object
     @property
-    def score(self):
-        return self._score
+    def date(self):
+        return self._date
     
     # a setter function, allows name to be updated after initial object creation
     @score.setter
-    def score(self, score):
-        self._score = score
+    def date(self, date):
+        self._date = date
     
    
     # output content using str(object) in human readable form, uses getter
