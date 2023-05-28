@@ -1,4 +1,5 @@
 import json
+import datetime
 from __init__ import app, db
 from sqlalchemy.exc import IntegrityError
 
@@ -9,15 +10,18 @@ class Leader(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     _name = db.Column(db.String(255), unique=False, nullable=False)
     _score = db.Column(db.Integer, unique=False, nullable=False)
-    _score = db.Column(db.Integer, unique=False, nullable=False)
-    _score = db.Column(db.Integer, unique=False, nullable=False)
-    _score = db.Column(db.Integer, unique=False, nullable=False)
+    _locations = db.Column(db.JSON, unique=False, nullable=False)
+    _tot_distance = db.Column(db.Integer, unique=False, nullable=False)
+    _date = db.Column(db.DateTime, default=datetime.datetime.utcnow, unique=False, nullable=False)
 
 
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, name, score):
+    def __init__(self, name, score, locations, tot_distance, date):
         self._name = name    # variables with self prefix become part of the object, 
         self._score = score
+        self._locations = locations
+        self._tot_distance = tot_distance
+        self._date = date
 
 
     # a name getter method, extracts name from object
@@ -39,7 +43,37 @@ class Leader(db.Model):
     @score.setter
     def score(self, score):
         self._score = score
-           
+    
+    # a getter method, extracts email from object
+    @property
+    def score(self):
+        return self._score
+    
+    # a setter function, allows name to be updated after initial object creation
+    @score.setter
+    def score(self, score):
+        self._score = score
+
+    # a getter method, extracts email from object
+    @property
+    def score(self):
+        return self._score
+    
+    # a setter function, allows name to be updated after initial object creation
+    @score.setter
+    def score(self, score):
+        self._score = score
+    
+    # a getter method, extracts email from object
+    @property
+    def score(self):
+        return self._score
+    
+    # a setter function, allows name to be updated after initial object creation
+    @score.setter
+    def score(self, score):
+        self._score = score
+    
    
     # output content using str(object) in human readable form, uses getter
     # output content using json dumps, this is ready for API response
