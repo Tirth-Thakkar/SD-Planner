@@ -98,16 +98,27 @@ class Leader(db.Model):
         return {
             "name": self.name,
             "score": self.score,
+            "locations": self.locations,
+            "tot_distance": self.tot_distance,
+            "data": self.date,
+            
         }
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, name, score):
+    def update(self, name="", score=0,locations="",tot_distance=0,date=""):
         """only updates values with length"""
         if len(name) > 0:
             self.name = name
         if score > 0:
             self.score = score
+        if len(locations) > 0:
+            self.score = score
+        if tot_distance > 0:
+            self.score = score
+        if len(date) > 0:
+            self.score = score
+        
         db.session.commit()
         return self
 
