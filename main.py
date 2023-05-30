@@ -6,16 +6,16 @@ from flask_cors import CORS
 # import "packages" from "this" project
 from __init__ import app,db  # Definitions initialization
 from model.jokes import initJokes
-from model.users import initLeaders
+# from model.users import initLeaders
 from model.players import initPlayers
-from model.leaders import initLeaders
+from model.leaders1 import initLeaders1
 
 # setup APIs
 from api.covid import covid_api # Blueprint import api definition
 from api.joke import joke_api # Blueprint import api definition
 from api.user import user_api # Blueprint import api definition
 from api.player import player_api
-from api.leaderboard import leaderboard
+from api.leaderboard1 import leaderboard
 
 # setup App pages
 from projects.projects import app_projects # Blueprint directory import projects definition
@@ -48,7 +48,7 @@ def table():
 @app.before_first_request
 def activate_job():  # activate these items 
     initJokes()
-    initLeaders()
+    initLeaders1()
     initPlayers()
 
 # this runs the application on the development server

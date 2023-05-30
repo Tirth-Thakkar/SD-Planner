@@ -130,7 +130,7 @@ class Leader(db.Model):
         return None
 
 
-def initLeaders():
+def initLeaders1():
     with app.app_context():
         """Create database and tables"""
         db.create_all()
