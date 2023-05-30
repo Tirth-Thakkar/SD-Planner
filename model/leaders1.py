@@ -1,10 +1,11 @@
 import json
 import datetime
+from datetime import date
 from __init__ import app, db
 from sqlalchemy.exc import IntegrityError
 
-class Leader(db.Model):
-    __tablename__ = 'Leaderboard'  # table name is plural, class name is singular
+class LeaderUser(db.Model):
+    __tablename__ = 'userLeaderboard'  # table name is plural, class name is singular
 
     # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
@@ -12,16 +13,18 @@ class Leader(db.Model):
     _score = db.Column(db.Integer, unique=False, nullable=False)
     _locations = db.Column(db.JSON, unique=False, nullable=False)
     _tot_distance = db.Column(db.Integer, unique=False, nullable=False)
-    _date = db.Column(db.DateTime, default=datetime.datetime.utcnow, unique=False, nullable=False)
+    _calc_distance = db.Column(db.Integer, unique=False, nullable=False)
+    _dateG = db.Column(db.Date)
 
 
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, name, score, locations, tot_distance, date):
+    def __init__(self, name, score, locations, tot_distance, calc_distance, dateG=date.today()):
         self._name = name    # variables with self prefix become part of the object, 
         self._score = score
         self._locations = locations
         self._tot_distance = tot_distance
-        self._date = date
+        self._calc_distance = calc_distance
+        self._dateG = dateG
 
 
     # a name getter method, extracts name from object
@@ -50,7 +53,7 @@ class Leader(db.Model):
         return self._locations
     
     # a setter function, allows name to be updated after initial object creation
-    @score.setter
+    @locations.setter
     def locations(self, locations):
         self._locations = locations
 
@@ -60,19 +63,30 @@ class Leader(db.Model):
         return self._tot_distance
     
     # a setter function, allows name to be updated after initial object creation
-    @score.setter
+    @tot_distance.setter
+    def tot_distance(self, tot_distance):
+        self._tot_distance = tot_distance
+
+    # a getter method, extracts email from object
+    @property
+    def calc_distance(self):
+        return self._tot_distance
+    
+    # a setter function, allows name to be updated after initial object creation
+    @calc_distance.setter
     def tot_distance(self, tot_distance):
         self._tot_distance = tot_distance
     
-    # a getter method, extracts email from object
+    # Convert dos to a string
     @property
-    def date(self):
-        return self._date
+    def dateG(self):
+        dateG_string = self._dateG.strftime('%m-%d-%Y')
+        return dateG_string
     
-    # a setter function, allows name to be updated after initial object creation
-    @score.setter
-    def date(self, date):
-        self._date = date
+    # Setter function
+    @dateG.setter
+    def dateG(self, dateG):
+        self._dateG = dateG
     
    
     # output content using str(object) in human readable form, uses getter
@@ -100,8 +114,8 @@ class Leader(db.Model):
             "score": self.score,
             "locations": self.locations,
             "tot_distance": self.tot_distance,
-            "date": self.date,
-            
+            "calc_distance": self.calc_distance,
+            "dateG": self.dateG
         }
 
     # CRUD update: updates user name, password, phone
@@ -135,7 +149,7 @@ def initLeaders1():
         """Create database and tables"""
         db.create_all()
         """Tester data for table"""
-        score1 = Leader(name='Chester', score = 100, locations={"list":["Balboa Park"]},tot_distance=100,date=datetime.date(2023,5,29))
+        score1 = LeaderUser(name='Chester', score = 100, locations={"list":["Balboa Park"]},tot_distance=100,date=datetime.date(2023,5,29))
 
         leaders = [score1]
 
