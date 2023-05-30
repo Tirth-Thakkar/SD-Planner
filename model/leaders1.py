@@ -100,7 +100,7 @@ class Leader(db.Model):
             "score": self.score,
             "locations": self.locations,
             "tot_distance": self.tot_distance,
-            "data": self.date,
+            "date": self.date,
             
         }
 
@@ -113,11 +113,11 @@ class Leader(db.Model):
         if score > 0:
             self.score = score
         if len(locations) > 0:
-            self.score = score
+            self.locations = locations
         if tot_distance > 0:
-            self.score = score
+            self.tot_distance = tot_distance
         if len(date) > 0:
-            self.score = score
+            self.date = date
         
         db.session.commit()
         return self
@@ -135,12 +135,9 @@ def initLeaders():
         """Create database and tables"""
         db.create_all()
         """Tester data for table"""
-        score1 = Leader(name='Chester', score = 100)
-        score2 = Leader(name='Sonic Hedgehog', score = 15)
-        score3 = Leader(name='Megamind', score = 3)
-        score4 = Leader(name='Gamer Man', score = 215)
+        score1 = Leader(name='Chester', score = 100, locations={"list":["Balboa Park"]},tot_distance=100,date=datetime.date(2023,5,29))
 
-        leaders = [score1, score2, score3, score4]
+        leaders = [score1]
 
         for leader in leaders:
             try:
