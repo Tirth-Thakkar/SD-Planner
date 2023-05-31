@@ -6,7 +6,6 @@ from flask_cors import CORS
 # import "packages" from "this" project
 from __init__ import app,db  # Definitions initialization
 from model.jokes import initJokes
-from model.logins import initLeaders
 # from model.users import initLeaders
 from model.players import initPlayers
 from model.leaders1 import initLeaderUsers
