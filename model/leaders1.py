@@ -110,6 +110,7 @@ class LeaderUser(db.Model):
     # returns dictionary
     def read(self):
         return {
+            "id": self.id,
             "name": self.name,
             "score": self.score,
             "locations": self.locations,
@@ -120,7 +121,7 @@ class LeaderUser(db.Model):
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, name="", score=0,locations="",tot_distance=0,date=""):
+    def update(self, name="", score=0,locations="",tot_distance=0,calc_distance=0):
         """only updates values with length"""
         if len(name) > 0:
             self.name = name
@@ -130,8 +131,8 @@ class LeaderUser(db.Model):
             self.locations = locations
         if tot_distance > 0:
             self.tot_distance = tot_distance
-        if len(date) > 0:
-            self.date = date
+        if calc_distance > 0:
+            self.calc_distance = calc_distance
         
         db.session.commit()
         return self
@@ -144,14 +145,14 @@ class LeaderUser(db.Model):
         return None
 
 
-def initLeaders1():
+def initLeaderUsers():
     with app.app_context():
         """Create database and tables"""
         db.create_all()
         """Tester data for table"""
-        score1 = LeaderUser(name='Chester', score = 100, locations={"list":["Balboa Park"]},tot_distance=150,calc_distance=100,dateG=datetime.date(2023,5,29))
+        score1 = LeaderUser(name='Chester', score = 100, locations={"list":["Balboa Park"]},tot_distance=100,date=datetime.date(2023,5,29))
 
-        leaders = [score1]
+        leaders = [score1,score2,score3,score4]
 
         for leader in leaders:
             try:
