@@ -152,7 +152,7 @@ def initLeaderUsers():
         """Tester data for table"""
         score1 = LeaderUser(name='Chester', score = 100, locations={"list":["Balboa Park"]},tot_distance=100,date=datetime.date(2023,5,29))
 
-        leaders = [score1,score2,score3,score4]
+        leaders = [score1]
 
         for leader in leaders:
             try:
