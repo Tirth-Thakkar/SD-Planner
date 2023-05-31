@@ -144,5 +144,4 @@ class LeaderBoardAPI:
     leaders_api.add_resource(LeaderDelete, '/delete')
     leaders_api.add_resource(Search, '/getSearch')
     leaders_api.add_resource(GetUsersHighestScore, '/getMaxScore')
-
     

@@ -160,4 +160,4 @@ def initLeaderUsers():
             except IntegrityError:
                 db.session.remove()
                 print(f"error try again later")
-            
+                

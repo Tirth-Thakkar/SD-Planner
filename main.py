@@ -13,18 +13,14 @@ from model.logins import initLeaders
 >>>>>>> 4fb821d8417b4060e0d3d0bf9b4497af0fe1a7fd
 from model.players import initPlayers
 from model.leaders1 import initLeaderUsers
+from model.logins import initLogins
 
 # setup APIs
 from api.covid import covid_api # Blueprint import api definition
 from api.joke import joke_api # Blueprint import api definition
 from api.user import user_api # Blueprint import api definition
-<<<<<<< HEAD
-from api.login import player_api
-from api.leaderboard import leaderboard
-=======
-from api.player import player_api
+from api.login import login_api
 from api.leaderboard1 import leaderboard
->>>>>>> 4fb821d8417b4060e0d3d0bf9b4497af0fe1a7fd
 
 # setup App pages
 from projects.projects import app_projects # Blueprint directory import projects definition
@@ -37,7 +33,7 @@ db.init_app(app)
 app.register_blueprint(joke_api) # register api routes
 app.register_blueprint(covid_api) # register api routes
 app.register_blueprint(user_api) # register api routes
-app.register_blueprint(player_api)
+app.register_blueprint(login_api)
 app.register_blueprint(app_projects) # register app pages
 app.register_blueprint(leaderboard)
 
@@ -59,6 +55,7 @@ def activate_job():  # activate these items
     initJokes()
     initLeaderUsers()
     initPlayers()
+    initLogins
 
 # this runs the application on the development server
 if __name__ == "__main__":
