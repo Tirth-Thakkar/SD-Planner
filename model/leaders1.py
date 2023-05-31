@@ -150,7 +150,7 @@ def initLeaderUsers():
         """Create database and tables"""
         db.create_all()
         """Tester data for table"""
-        score1 = LeaderUser(name='Chester', score = 100, locations={"list":["Balboa Park"]},tot_distance=100,date=datetime.date(2023,5,29))
+        score1 = LeaderUser(name='Chester', score = 100, locations={"list":["Balboa Park"]},tot_distance=150,calc_distance=100,dateG=datetime.date(2023,5,29))
 
         leaders = [score1]
 
