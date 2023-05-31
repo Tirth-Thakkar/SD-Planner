@@ -74,6 +74,7 @@ class Login(db.Model):
     # returns dictionary
     def read(self):
         return {
+            "id": self.id,
             "email": self.email,
             "password": self.password,
         }

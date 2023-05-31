@@ -5,7 +5,7 @@ from model.logins import Login
 
 # Change variable name and API name and prefix
 login_api = Blueprint('login_api', __name__,
-                   url_prefix='/api/logins')
+                   url_prefix='/api/login')
 
 # API docs https://flask-restful.readthedocs.io/en/latest/api.html
 api = Api(login_api)
