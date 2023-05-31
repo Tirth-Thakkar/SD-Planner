@@ -65,7 +65,7 @@ class LoginAPI:
 
 
     # building RESTapi endpoint, method distinguishes action
-    api.add_resource(AddLogin, '/score')
+    api.add_resource(AddLogin, '/logins')
     api.add_resource(GetLogins, '/ulogin')
     api.add_resource(UpdateLogin, '/uplogin')
     api.add_resource(DeleteLogin, '/dlogin')   
