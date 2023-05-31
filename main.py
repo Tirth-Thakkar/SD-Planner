@@ -6,7 +6,7 @@ from flask_cors import CORS
 # import "packages" from "this" project
 from __init__ import app,db  # Definitions initialization
 from model.jokes import initJokes
-from model.users import initLeaders
+from model.logins import initLeaders
 from model.players import initPlayers
 from model.leaders import initLeaders
 
@@ -14,7 +14,7 @@ from model.leaders import initLeaders
 from api.covid import covid_api # Blueprint import api definition
 from api.joke import joke_api # Blueprint import api definition
 from api.user import user_api # Blueprint import api definition
-from api.player import player_api
+from api.login import player_api
 from api.leaderboard import leaderboard
 
 # setup App pages

@@ -17,35 +17,22 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # -- a.) db.Model is like an inner layer of the onion in ORM
 # -- b.) User represents data we want to store, something that is built on db.Model
 # -- c.) SQLAlchemy ORM is layer on top of SQLAlchemy Core, then SQLAlchemy engine, SQL
-class User(db.Model):
-    __tablename__ = 'users1'  # table name is plural, class name is singular
+class Login(db.Model):
+    __tablename__ = 'logins'  # table name is plural, class name is singular
 
     # Define the User schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
-    _username = db.Column(db.String(255), unique=True, nullable=False)
     _email = db.Column(db.String(255), unique=True, nullable=False)
     _password = db.Column(db.String(255), unique=False, nullable=False)
     
     
 
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, username="Sreeja", email="sreeja@gmail.com", password="123sreeja"):
+    def __init__(self, email="tester@gmail.com", password="123test"):
        # variables with self prefix become part of the object, 
-        self._username = username
         self._email= email
         self._password = password
-        
-    
-    # a getter method, extracts email from object
-    @property
-    def username(self):
-        return self._username
-    
-    # a setter function, allows name to be updated after initial object creation
-    @username.setter
-    def username(self, username):
-        self._username = username
-        
+
     # a getter method, extracts email from object
     @property
     def email(self):
@@ -65,11 +52,6 @@ class User(db.Model):
     @password.setter
     def password(self, password):
         self._password = password
-   
-   
-   
-   
-   
     
     # output content using str(object) in human readable form, uses getter
     # output content using json dumps, this is ready for API response
@@ -92,17 +74,14 @@ class User(db.Model):
     # returns dictionary
     def read(self):
         return {
-            "username": self.username,
             "email": self.email,
             "password": self.password,
         }
 
     # CRUD update: updates user name, password, phone
     # returns self
-    def update(self, username="", email="",password=""):
+    def update(self, email="",password=""):
         """only updates values with length"""
-        if len(username) > 0:
-            self.username = username
         if len(email) > 0:
             self.email = email
         if len(password) > 0:
@@ -122,7 +101,7 @@ class User(db.Model):
 
 
 # Builds working data for testing
-def initUsers():
+def initLogins():
     with app.app_context():
         """Create database and tables"""
         db.init_app(app)
@@ -130,22 +109,22 @@ def initUsers():
 
         """Tester data for table"""
 
-        u1 = User(username='sreeja', email="sreeja@gmail.com", password='123sreeja')
-        u2 = User(username='ekam', email="ekam@gmail.com", password='123ekam')
-        u3 = User(username='tirth', email="tirth@gmail.com", password='123tirth')
-        u4 = User(username='mani', email="mani@gmail.com", password='123mani')
-        u5 = User(username='user', email="user@gmail.com", password='123user')
+        u1 = Login(email="jishnu@gmail.com", password='123jishnu')
+        u2 = Login(email="alan@gmail.com", password='123alan')
+        u3 = Login(email="tirth@gmail.com", password='123tirth')
+        u4 = Login(email="yuri@gmail.com", password='123yuri')
+        u5 = Login(email="haoxuan@gmail.com", password='123haoxuan')
 
-        users = [u1, u2, u3, u4, u5]
+        logins = [u1, u2, u3, u4, u5]
 
         """Builds sample user/note(s) data"""
-        for user in users:
+        for login in logins:
             try:
-                user.create()
+                login.create()
                 
             except IntegrityError:
                 '''fails with bad or duplicate data'''
 
                 db.session.remove()
-                print(f"Records exist, duplicate email, or error: {user.username}")
+                print(f"Records exist, duplicate email, or error: {login.email}")
                 

@@ -3,7 +3,7 @@ from flask_restful import Api, Resource # used for REST API building
 from flask_restful import Api, Resource, reqparse
 from datetime import datetime
 
-from model.users import User
+from model.logins import User
 
 user_api = Blueprint('user_api', __name__,
                    url_prefix='/api/users')
