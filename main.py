@@ -6,7 +6,7 @@ from flask_cors import CORS
 # import "packages" from "this" project
 from __init__ import app,db  # Definitions initialization
 from model.jokes import initJokes
-from model.users import initLeaders
+from model.users import initUsers
 from model.players import initPlayers
 from model.leaders import initLeaders
 
@@ -49,6 +49,7 @@ def table():
 def activate_job():  # activate these items 
     initJokes()
     initLeaders()
+    initUsers()
     initPlayers()
 
 # this runs the application on the development server
