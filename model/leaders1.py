@@ -18,7 +18,7 @@ class LeaderUser(db.Model):
 
 
     # constructor of a User object, initializes the instance variables within object (self)
-    def __init__(self, name, score, locations, tot_distance, calc_distance, dateG=date.today()):
+    def __init__(self, name="none", score=0, locations={"list":["none"]}, tot_distance=0, calc_distance=0, dateG=date.today()):
         self._name = name    # variables with self prefix become part of the object, 
         self._score = score
         self._locations = locations
@@ -150,10 +150,10 @@ def initLeaderUsers():
         """Create database and tables"""
         db.create_all()
         """Tester data for table"""
-        score1 = LeaderUser('Chester', 100, ["Balboa Park"], 15, 11, date(2023,5,29))
-        score2 = LeaderUser('Bob', 200, ["Balboa Park", "Zoo", "Seaworld"], 20, 12, date(1999,4,20))
-        score3 = LeaderUser('Jeff', 300, ["Coronado", "Ocean Beach", "Fashion Valley"], 18, 9, date(2023,3,13))
-        score4 = LeaderUser('Tirth', 1, ["Costco", "Walmart", "Mission Bay", "Seaworld"], 11, 11, date(2023,1,1))
+        score1 = LeaderUser('Chester', 100, {"list":["Balboa Park"]}, 15, 11, date(2023,5,29))
+        score2 = LeaderUser('Bob', 200, {"list":["Balboa Park", "Zoo", "Seaworld"]}, 20, 12, date(1999,4,20))
+        score3 = LeaderUser('Jeff', 300, {"list":["Coronado", "Ocean Beach", "Fashion Valley"]}, 18, 9, date(2023,3,13))
+        score4 = LeaderUser('Tirth', 1, {"list":["Costco", "Walmart", "Mission Bay", "Seaworld"]}, 11, 11, date(2023,1,1))
 
         leaders = [score1,score2,score3,score4]
 
