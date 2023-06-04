@@ -28,7 +28,7 @@ class LeaderBoardAPI:
             if score is None or score <= 0:
                 return {'message': f'No username or score is too low'}, 400
             
-            locations = body.get('locations')["list"]
+            locations = body.get('locations')
             if locations is None or len(locations) <= 0:
                 return {'message': f'No username or score is too low'}, 400
             
