@@ -14,7 +14,7 @@ class Login(db.Model):
 
     # Define the Login schema with variables from the object
     id = db.Column(db.Integer, primary_key=True)
-    _email = db.Column(db.String(255), unique=True, nullable=False)
+    _email = db.Column(db.String(255), unique=False, nullable=False)
     _password = db.Column(db.String(255), unique=False, nullable=False)
 
     # Constructor of a Login object, initializes the instance variables within the object (self)
