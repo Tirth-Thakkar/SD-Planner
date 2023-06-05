@@ -100,8 +100,8 @@ class LeaderBoardAPI:
         # def delete(self) does the DELETE method
         def delete(self):
             # Gets the data from postman or frontend
-            body = request.get_json()
-
+            body = request.get_json() 
+ 
             # Gets the ID
             getID = body.get('id')
 
