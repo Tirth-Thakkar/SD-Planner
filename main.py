@@ -5,16 +5,17 @@ from flask import render_template  # import render_template from "public" flask 
 from flask_cors import CORS
 # import "packages" from "this" project
 from __init__ import app,db  # Definitions initialization
-from model.jokes import initJokes
+# from model.jokes import initJokes
 # from model.users import initLeaders
-from model.players import initPlayers
+# from model.players import initPlayers
 from model.leaders1 import initLeaderUsers
+# from model.logins import initLogins
 
 # setup APIs
-from api.covid import covid_api # Blueprint import api definition
-from api.joke import joke_api # Blueprint import api definition
-from api.user import user_api # Blueprint import api definition
-from api.player import player_api
+# from api.covid import covid_api # Blueprint import api definition
+# from api.joke import joke_api # Blueprint import api definition
+# from api.user import user_api # Blueprint import api definition
+# from api.login import login_api
 from api.leaderboard1 import leaderboard
 
 # setup App pages
@@ -25,12 +26,12 @@ from projects.projects import app_projects # Blueprint directory import projects
 db.init_app(app)
 
 # register URIs
-app.register_blueprint(joke_api) # register api routes
-app.register_blueprint(covid_api) # register api routes
-app.register_blueprint(user_api) # register api routes
-app.register_blueprint(player_api)
-app.register_blueprint(app_projects) # register app pages
+# app.register_blueprint(joke_api) # register api routes
+# app.register_blueprint(covid_api) # register api routes
+# app.register_blueprint(user_api) # register api routes
+# app.register_blueprint(login_api)
 app.register_blueprint(leaderboard)
+app.register_blueprint(app_projects) # register app pages
 
 @app.errorhandler(404)  # catch for URL not found
 def page_not_found(e):
@@ -47,12 +48,13 @@ def table():
 
 @app.before_first_request
 def activate_job():  # activate these items 
-    initJokes()
+    # initJokes()
     initLeaderUsers()
-    initPlayers()
+    # initPlayers()
+    # initLogins
 
 # this runs the application on the development server
 if __name__ == "__main__":
     # change name for testing
-    cors = CORS(app)
+    CORS(app)
     app.run(debug=True, host="0.0.0.0", port="8086")
