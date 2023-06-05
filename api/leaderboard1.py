@@ -23,19 +23,22 @@ class LeaderBoardAPI:
             if name is None or len(name) < 1:
                 return {'message': f'Name missing or too short'}, 400
             
-            # validate uid
+            # validate score
             score = float(body.get('score'))
             if score is None or score <= 0:
                 return {'message': f'No username or score is too low'}, 400
             
+            # validate locations
             locations = body.get('locations')
             if locations is None or len(locations) <= 0:
                 return {'message': f'No username or score is too low'}, 400
             
+            # validate tot_distance
             tot_distance = float(body.get('tot_distance'))
             if tot_distance is None or tot_distance <= 0:
                 return {'message': f'Total distance by user is nonexistnet or unrealistic'}, 400
             
+            # validate calc_distance
             calc_distance = float(body.get('calc_distance'))
             if calc_distance is None or calc_distance <= 0:
                 return {'message': f'Calculated distance is nonexistent or unrealistic'}, 400
@@ -57,7 +60,7 @@ class LeaderBoardAPI:
             if user:
                 return jsonify(user.read())
             # failure returns error
-            return {'message': f'Processed {name}, either a format error or User ID {score} is duplicate'}, 400
+            return {'message': f'Processed {name}, either a format error or User ID is duplicate'}, 400
 
     class LeaderGet(Resource):
         def get(self): # Read Method
@@ -78,14 +81,16 @@ class LeaderBoardAPI:
             # Gets the score, score is going to be updated
             score = body.get('score')
 
+            # Gets the tot_distance, tot_distance is going to be updated
             tot_distance = float(body.get('tot_distance'))
             
+            # Gets the calc_distance, calc_distance is going to be updated
             calc_distance = float(body.get('calc_distance'))
 
             # Gets the user through the username
             userUpdating = LeaderUser.query.filter_by(_name = name).first()
             if userUpdating:
-                # Updates the score for the user
+                # Updates the score, tot_distance, and calc_distance for the user
                 userUpdating.update(score = score)
                 userUpdating.update(tot_distance = tot_distance)
                 userUpdating.update(calc_distance = calc_distance)
