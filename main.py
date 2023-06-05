@@ -56,5 +56,5 @@ def activate_job():  # activate these items
 # this runs the application on the development server
 if __name__ == "__main__":
     # change name for testing
-    cors = CORS(app)
+    CORS(app)
     app.run(debug=True, host="0.0.0.0", port="8086")
