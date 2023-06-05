@@ -37,53 +37,53 @@ class LeaderUser(db.Model):
     def name(self, name):
         self._name = name
     
-    # a getter method, extracts email from object
+    # a getter method, extracts score from object
     @property
     def score(self):
         return self._score
     
-    # a setter function, allows name to be updated after initial object creation
+    # a setter function, allows score to be updated after initial object creation
     @score.setter
     def score(self, score):
         self._score = score
     
-    # a getter method, extracts email from object
+    # a getter method, extracts locations from object
     @property
     def locations(self):
         return self._locations
     
-    # a setter function, allows name to be updated after initial object creation
+    # a setter function, allows locations to be updated after initial object creation
     @locations.setter
     def locations(self, locations):
         self._locations = locations
 
-    # a getter method, extracts email from object
+    # a getter method, extracts tot_distance from object
     @property
     def tot_distance(self):
         return self._tot_distance
     
-    # a setter function, allows name to be updated after initial object creation
+    # a setter function, allows tot_distance to be updated after initial object creation
     @tot_distance.setter
     def tot_distance(self, tot_distance):
         self._tot_distance = tot_distance
 
-    # a getter method, extracts email from object
+    # a getter method, extracts cal_distance from object
     @property
     def calc_distance(self):
         return self._tot_distance
     
-    # a setter function, allows name to be updated after initial object creation
+    # a setter function, allows calc_distance to be updated after initial object creation
     @calc_distance.setter
     def tot_distance(self, tot_distance):
         self._tot_distance = tot_distance
     
-    # Convert dos to a string
+    # a getter method, extracts dateG from object
     @property
     def dateG(self):
         dateG_string = self._dateG.strftime('%m-%d-%Y')
         return dateG_string
     
-    # Setter function
+    # a setter function, allows dateG to be updated after initial object creation
     @dateG.setter
     def dateG(self, dateG):
         self._dateG = dateG
