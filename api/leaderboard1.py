@@ -24,7 +24,7 @@ class LeaderBoardAPI:
                 return {'message': f'Name missing or too short'}, 400
             
             # validate uid
-            score = int(body.get('score'))
+            score = float(body.get('score'))
             if score is None or score <= 0:
                 return {'message': f'No username or score is too low'}, 400
             
@@ -32,11 +32,11 @@ class LeaderBoardAPI:
             if locations is None or len(locations) <= 0:
                 return {'message': f'No username or score is too low'}, 400
             
-            tot_distance = int(body.get('tot_distance'))
+            tot_distance = float(body.get('tot_distance'))
             if tot_distance is None or tot_distance <= 0:
                 return {'message': f'Total distance by user is nonexistnet or unrealistic'}, 400
             
-            calc_distance = int(body.get('calc_distance'))
+            calc_distance = float(body.get('calc_distance'))
             if calc_distance is None or calc_distance <= 0:
                 return {'message': f'Calculated distance is nonexistent or unrealistic'}, 400
             
@@ -78,9 +78,9 @@ class LeaderBoardAPI:
             # Gets the score, score is going to be updated
             score = body.get('score')
 
-            tot_distance = int(body.get('tot_distance'))
+            tot_distance = float(body.get('tot_distance'))
             
-            calc_distance = int(body.get('calc_distance'))
+            calc_distance = float(body.get('calc_distance'))
 
             # Gets the user through the username
             userUpdating = LeaderUser.query.filter_by(_name = name).first()
