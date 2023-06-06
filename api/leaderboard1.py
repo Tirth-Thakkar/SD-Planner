@@ -13,6 +13,7 @@ leaders_api = Api(leaderboard)
 
 class LeaderBoardAPI:        
     class AddScore(Resource):  # User API operation for Create, Read.  THe Update, Delete methods need to be implemeented
+        @cross_origin()
         def post(self): # Create method
             ''' Read data for json body '''
             body = request.get_json()
